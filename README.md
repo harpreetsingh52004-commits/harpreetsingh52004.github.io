@@ -44,7 +44,7 @@ See all projects pinned on my profile.
 
 ## Contact
 
-- GitHub: [@harpreetsingh52004](https://github.com/harpreetsingh52004)
+- GitHub: [@harpreetsingh52004](https://github.com/harpreetsingh52004-commits)
 - LinkedIn: [linkedin.com/in/harpreetsingh52004](https://www.linkedin.com/in/harpreetsingh52004)
 - Portfolio: harpreetsingh.cloud
 
