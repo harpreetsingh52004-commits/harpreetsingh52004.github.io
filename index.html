@@ -1,49 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harpreet Singh | Automation & Controls</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harpreet Singh — Automation & Controls Engineer</title>
+<meta name="description" content="Automation & Controls Engineering portfolio of Harpreet Singh — PLC, robotics, IoT, and digital-twin projects. Seneca Polytechnic graduate, Toronto." />
+<meta name="theme-color" content="#0b0f14" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
-  body { font-family: -apple-system, Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; background: #0d1117; color: #e6edf3; line-height: 1.6; }
-  h1 { color: #58a6ff; margin-bottom: 5px; }
-  h2 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 5px; margin-top: 30px; }
-  .subtitle { color: #8b949e; margin-bottom: 30px; }
-  a { color: #58a6ff; text-decoration: none; }
+  :root {
+    --bg: #0b0f14;
+    --bg-elev: #11161d;
+    --bg-card: #161c25;
+    --border: #232b36;
+    --border-strong: #2f3a48;
+    --text: #e6edf5;
+    --text-dim: #8a96a6;
+    --text-muted: #5e6877;
+    --accent: #4cc9f0;
+    --accent-2: #00d4a3;
+    --accent-warn: #f6b73c;
+    --max: 1140px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+    line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content:''; position: fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(900px 500px at 12% -10%, rgba(76,201,240,0.10), transparent 60%),
+      radial-gradient(700px 400px at 90% 0%, rgba(0,212,163,0.06), transparent 60%);
+  }
+  .wrap { position: relative; z-index:1; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .footer { margin-top: 40px; color: #8b949e; font-size: 0.9em; text-align: center; }
+  code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.92em; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(11,15,20,0.78);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600; letter-spacing: -0.01em; font-size: 0.95rem;
+  }
+  .brand .at { color: var(--text-muted); }
+  .brand .name { color: var(--text); }
+  .nav-links { display: flex; gap: 22px; }
+  .nav-links a { color: var(--text-dim); font-size: 0.92rem; }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* HERO */
+  header.hero { padding: 84px 0 64px; }
+
+  /* Name plate — clearly a name, not part of the heading */
+  .nameplate {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 8px 14px 8px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+  }
+  .nameplate .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 12px var(--accent-2);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .nameplate .label-mini { color: var(--text-muted); }
+  .nameplate .name-val { color: var(--text); font-weight: 600; }
+
+  h1 {
+    font-size: clamp(2.1rem, 6.4vw, 3.6rem);
+    line-height: 1.05; margin: 0 0 18px;
+    letter-spacing: -0.025em; font-weight: 800;
+  }
+  h1 .accent { color: var(--accent); }
+  .lede {
+    font-size: clamp(1rem, 2.4vw, 1.18rem);
+    color: var(--text-dim); max-width: 680px; margin: 0 0 32px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-card); color: var(--text);
+    transition: border-color .15s ease, transform .15s ease, background .15s ease;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); background: var(--bg-elev); transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); color: #061018; border-color: var(--accent); }
+  .btn.primary:hover { background: #6dd4f5; border-color: #6dd4f5; }
+
+  /* SECTIONS */
+  section { padding: 64px 0; border-top: 1px solid var(--border); }
+  section h2 {
+    font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+    margin: 0 0 8px; letter-spacing: -0.01em;
+  }
+  section .sub { color: var(--text-dim); margin: 0 0 32px; max-width: 640px; }
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent); font-size: 0.78rem;
+    letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px;
+  }
+
+  /* ABOUT */
+  .about { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start; }
+  @media (min-width: 760px) { .about { grid-template-columns: 1.4fr 1fr; gap: 48px; } }
+  .about p { color: var(--text-dim); }
+  .about p strong { color: var(--text); font-weight: 600; }
+  .quick-facts {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px;
+  }
+  .quick-facts h3 { margin: 0 0 14px; font-size: 0.92rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; }
+  .quick-facts dl { margin: 0; display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 10px; font-size: 0.94rem; }
+  .quick-facts dt { color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; align-self: center; }
+  .quick-facts dd { margin: 0; color: var(--text); }
+
+  /* SKILLS */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .skill-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+  }
+  .skill-card h3 { margin: 0 0 10px; font-size: 0.95rem; color: var(--accent); }
+  .skill-card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-card li {
+    background: rgba(76,201,240,0.06); border: 1px solid rgba(76,201,240,0.2);
+    color: var(--text); padding: 4px 10px;
+    border-radius: 6px; font-size: 0.83rem;
+  }
+
+  /* PROJECTS */
+  .projects { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  @media (min-width: 760px) { .projects { grid-template-columns: 1fr 1fr; } }
+  .project {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 0;
+    display: flex; flex-direction: column;
+    transition: border-color .2s ease, transform .2s ease;
+    overflow: hidden;
+  }
+  .project:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .project .thumb {
+    position: relative; width: 100%; aspect-ratio: 16/9;
+    background: #0b0f14;
+    overflow: hidden; border-bottom: 1px solid var(--border);
+  }
+  .project .thumb img,
+  .project .thumb video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .project .thumb-fallback {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background:
+      linear-gradient(135deg, rgba(76,201,240,0.10), rgba(0,212,163,0.05)),
+      var(--bg-card);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem; letter-spacing: 0.08em;
+    text-align: center; padding: 16px;
+  }
+  .project .body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+  .project .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .project .badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 3px 8px; border-radius: 4px;
+    border: 1px solid var(--border-strong); color: var(--text-dim);
+  }
+  .project .badge.live { color: var(--accent-2); border-color: rgba(0,212,163,0.4); }
+  .project .badge.wip { color: var(--accent-warn); border-color: rgba(246,183,60,0.4); }
+  .project h3 { margin: 0 0 8px; font-size: 1.12rem; }
+  .project p { color: var(--text-dim); margin: 0 0 14px; font-size: 0.95rem; }
+  .project .stack { font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-size: 0.78rem; margin-bottom: 16px; }
+  .project .links { display: flex; gap: 14px; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); font-size: 0.9rem; }
+  .project.featured { border-color: var(--accent); }
+
+  /* FEATURED VIDEO */
+  .video-wrap {
+    position: relative; width: 100%; padding-top: 56.25%;
+    background: #000; overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* CERTS */
+  .cert-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .cert {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+  }
+  .cert .issuer { color: var(--text-muted); font-size: 0.85rem; }
+  .cert h4 { margin: 4px 0 6px; font-size: 1rem; }
+  .cert .date { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-dim); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 520px; }
+  .contact-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    transition: border-color .15s ease;
+  }
+  .contact-row:hover { border-color: var(--accent); }
+  .contact-row .label-inline { color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; min-width: 80px; }
+  .contact-row a { color: var(--text); }
+
+  footer { padding: 36px 0 48px; color: var(--text-muted); font-size: 0.86rem; border-top: 1px solid var(--border); }
+  footer .row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 </style>
 </head>
 <body>
 
-<h1>Harpreet Singh</h1>
-<p class="subtitle">Automation &amp; Controls | Electromechanical Engineering Technology<br>
-Toronto, Ontario | Open to relocation across Canada</p>
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="at">~/</span><span class="name">harpreetsingh</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-<h2>About</h2>
-<p>Recent Electromechanical Engineering Technology (Automation) Advanced Diploma graduate from Seneca Polytechnic. Hands-on experience with PLC programming, industrial automation, robotics, and IoT systems.</p>
+<header class="hero">
+  <div class="wrap">
+    <div class="nameplate">
+      <span class="pulse"></span>
+      <span class="label-mini">name</span>
+      <span class="name-val">Harpreet Singh</span>
+    </div>
+    <h1>Building <span class="accent">PLC, robotics, and IoT</span> systems for the factory floor.</h1>
+    <p class="lede">
+      Electromechanical Engineering Technology (Automation) graduate from Seneca Polytechnic, based in Toronto. I design and commission PLC-driven systems — Allen-Bradley, Siemens, CLICK — and integrate them with HMIs, KUKA robots, NX digital twins, and IoT dashboards.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">View 10 projects</a>
+      <a class="btn" href="resume.pdf" download>Download résumé</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
 
-<h2>Skills</h2>
-<p><strong>PLCs:</strong> Siemens TIA Portal, Allen-Bradley CompactLogix (Studio 5000), CLICK PLC<br>
-<strong>Robotics:</strong> KUKA (KRL, WorkVisual), NX MCD digital twin<br>
-<strong>Design:</strong> EPLAN Electric P8, Siemens NX, SolidWorks, Mastercam<br>
-<strong>IoT:</strong> Node-RED, MQTT, Modbus, Azure (AZ-900)<br>
-<strong>Other:</strong> HMI Development, PID Control Systems</p>
+<section id="about">
+  <div class="wrap">
+    <div class="label">About</div>
+    <h2>Mechatronics, control logic, and clean wiring.</h2>
+    <p class="sub">I like the layer where mechanical, electrical, and software all have to agree — the kind of work where one line of ladder logic and one torque setting both have to be right.</p>
+    <div class="about">
+      <div>
+        <p>
+          I just finished my <strong>Electromechanical Engineering Technology — Automation</strong> diploma at Seneca Polytechnic. My capstone is a <strong>filling, capping, and sorting system</strong> driven by a CLICK PLC and monitored over MQTT through a Node-RED dashboard.
+        </p>
+        <p>
+          Across the program I worked with <strong>Allen-Bradley CompactLogix in Studio 5000</strong> (master/slave, PID, FIFO/LIFO), <strong>Siemens S7-1200/1500 in TIA Portal</strong> (washing machine, elevator, traffic light + pedestrian crosswalk, Festo MPS), <strong>KUKA robots in KRL + WorkVisual</strong>, and <strong>Siemens NX with MCD</strong> for digital-twin validation. I designed and etched a custom <strong>variable-voltage power supply PCB</strong> in PADS, machined parts on <strong>HAAS mills with Mastercam</strong>, and built <strong>Node-RED + MQTT + Modbus</strong> bridges across multiple courses.
+        </p>
+        <p>
+          Currently looking for full-time <strong>Automation, Controls, or Manufacturing Engineering</strong> roles in Canada — open to remote, hybrid, or relocation. Working toward my <strong>OACETT C.E.T.</strong> designation.
+        </p>
+      </div>
+      <aside class="quick-facts">
+        <h3>Quick facts</h3>
+        <dl>
+          <dt>Location</dt><dd>Toronto, ON</dd>
+          <dt>Field</dt><dd>Automation &amp; Controls</dd>
+          <dt>School</dt><dd>Seneca Polytechnic</dd>
+          <dt>Driving</dt><dd>G-class + vehicle</dd>
+          <dt>Status</dt><dd>Open to opportunities</dd>
+          <dt>Stack</dt><dd>PLC · HMI · Robotics · IoT</dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
 
-<h2>Certifications</h2>
-<p>Siemens TIA Portal, IIoT, Mechatronics, KUKA Robot Programming, EPLAN, HAAS Mill Operator, WHMIS</p>
+<section id="skills">
+  <div class="wrap">
+    <div class="label">Capabilities</div>
+    <h2>What I work with.</h2>
+    <p class="sub">Hands-on across the full controls stack — from sensor wiring to dashboard.</p>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h3>PLC &amp; Ladder Logic</h3>
+        <ul>
+          <li>Allen-Bradley Studio 5000</li><li>CompactLogix 5380</li>
+          <li>Siemens TIA Portal</li><li>S7-1200 / S7-1500 / ET 200SP</li>
+          <li>CLICK PLC</li><li>Ladder + Structured Text</li>
+          <li>PID</li><li>FIFO / LIFO</li>
+          <li>Master / Slave Comms</li><li>Produced/Consumed Tags</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>HMI &amp; SCADA</h3>
+        <ul>
+          <li>TIA Portal HMI (KTP / TP700)</li><li>WinCC</li>
+          <li>Animated screens</li><li>VB scripting</li>
+          <li>Node-RED dashboards</li><li>Alarm management</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Robotics</h3>
+        <ul>
+          <li>KUKA KRL (pendant)</li><li>KUKA WorkVisual</li>
+          <li>NX MCD digital twin</li><li>Tecnomatix</li>
+          <li>PLC-Robot handshake</li><li>Romer Absolute Arm</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Industrial Networks &amp; IoT</h3>
+        <ul>
+          <li>EtherNet/IP</li><li>PROFINET</li>
+          <li>Modbus RTU/TCP</li><li>OPC-UA</li>
+          <li>MQTT</li><li>BACnet/IP + MS/TP</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Sensors &amp; Field Devices</h3>
+        <ul>
+          <li>Capacitive / inductive</li><li>Limit switches</li>
+          <li>Color / through-beam</li><li>RTD Pt100 (3-wire)</li>
+          <li>Pressure / flow / level</li><li>Pneumatics (Festo)</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Electrical &amp; PCB</h3>
+        <ul>
+          <li>EPLAN schematics</li><li>PADS Logic + Layout</li>
+          <li>Eagle / Fusion 360</li><li>Optocoupler isolation</li>
+          <li>24 V / 120 V / 480 V wiring</li><li>In-house PCB etch</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>CAD &amp; Manufacturing</h3>
+        <ul>
+          <li>Siemens NX (CAD/CAM)</li><li>SolidWorks</li>
+          <li>Mastercam</li><li>HAAS Mill (certified)</li>
+          <li>Manual lathe + mill</li><li>3D printing (FDM)</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Analysis &amp; Tools</h3>
+        <ul>
+          <li>MATLAB</li><li>PID tuning (FOPDT, Cohen-Coon)</li>
+          <li>Step-response analysis</li><li>Git / GitHub</li>
+          <li>Kantech access control</li><li>Azure (AZ-900 path)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2>Featured Projects</h2>
-<p><strong>Filling, Capping &amp; Sorting System</strong> (Capstone) — CLICK PLC, Node-RED, MQTT<br>
-<strong>Elevator Automation</strong> — Siemens TIA Portal with animated HMI<br>
-<strong>KUKA Robot + PLC Integration</strong> — KRL with NX MCD digital twin<br>
-<strong>Allen-Bradley CompactLogix System</strong> — PID, FIFO/LIFO, master-slave</p>
+<section id="projects">
+  <div class="wrap">
+    <div class="label">Selected Work</div>
+    <h2>10 projects.</h2>
+    <p class="sub">Capstone, coursework, and personal builds — each repo links to source files, lab references, and full documentation.</p>
 
-<h2>Contact</h2>
-<p>GitHub: <a href="https://github.com/harpreetsingh52004-commits">@harpreetsingh52004-commits</a><br>
-LinkedIn: <a href="https://www.linkedin.com/in/harpreetsingh52004">linkedin.com/in/harpreetsingh52004</a></p>
+    <!-- 1. Capstone — featured with embedded YouTube video -->
+    <div class="project featured" style="margin-bottom: 18px;">
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/HHJvgs4jYNk"
+          title="Filling, Capping &amp; Sorting System Demo"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <div class="body">
+        <div class="badges">
+          <span class="badge live">Capstone</span>
+          <span class="badge wip">Capping iter.</span>
+          <span class="badge">2025</span>
+        </div>
+        <h3>Filling, Capping &amp; Sorting System</h3>
+        <p>
+          Mechatronic system that detects, fills, caps, and sorts containers by liquid color. CLICK PLC drives the ladder logic; an MQTT-fed Node-RED dashboard handles operator setup and live monitoring.
+        </p>
+        <div class="stack">CLICK PLC · Node-RED · MQTT · Rotary Indexing Table · Custom Optocoupler PCB</div>
+        <div class="links">
+          <a href="https://github.com/harpreetsingh52004/filling-capping-sorting-capstone">GitHub →</a>
+          <a href="https://youtu.be/HHJvgs4jYNk">Watch demo →</a>
+        </div>
+      </div>
+    </div>
 
-<p class="footer">Site under construction — full portfolio coming soon.</p>
+    <div class="projects">
+
+      <div class="project">
+        <div class="thumb">
+          <div class="thumb-fallback">/* Studio&nbsp;5000 · master &amp; slave · PID · FIFO&nbsp;/&nbsp;LIFO */</div>
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">Allen-Bradley</span></div>
+          <h3>CompactLogix Suite — Master/Slave</h3>
+          <p>Ten labs in Studio 5000 — PID, FIFO/LIFO, AOIs, then a final master/slave system across two CompactLogix controllers communicating with produced/consumed tags over EtherNet/IP.</p>
+          <div class="stack">Studio 5000 · CompactLogix 5380 · EtherNet/IP · PID · FIFO/LIFO</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/allen-bradley-compactlogix-suite">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <video autoplay muted loop playsinline poster="assets/proj_traffic_light_poster.jpg">
+            <source src="assets/proj_traffic_light.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">Siemens</span></div>
+          <h3>Siemens TIA Suite</h3>
+          <p>Four S7-based deliverables in one repo: washing machine cycle, multi-floor elevator, traffic light + pedestrian crosswalk on ET 200SP, and a Festo MPS station. Each with animated TIA Portal HMIs and VB scripts.</p>
+          <div class="stack">TIA Portal · S7-1200/1500 · ET 200SP · HMI · VB · PROFINET</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/siemens-tia-suite">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <video autoplay muted loop playsinline poster="assets/proj_kuka_poster.jpg">
+            <source src="assets/proj_kuka.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">KUKA</span></div>
+          <h3>KUKA Industrial Robotics</h3>
+          <p>Two semesters of KUKA work — KRL on the pendant, WorkVisual on the laptop, PLC handshakes, and motion validated against an NX MCD digital twin. Includes a sub-mm Romer Absolute Arm calibration workflow.</p>
+          <div class="stack">KRL · WorkVisual · NX MCD · Romer scan · PLC handshake</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/kuka-industrial-robotics">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <video autoplay muted loop playsinline poster="assets/proj_nx_mcd_poster.jpg">
+            <source src="assets/proj_nx_mcd.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">NX / MCD</span></div>
+          <h3>NX Digital Twin &amp; Simulation</h3>
+          <p>Festo MPS station modeled in NX MCD with sensor-aware physics, Tecnomatix material-flow simulation, and a Node-RED bridge that streams live cell data into the twin. Plus a real scan-to-engrave KUKA workflow.</p>
+          <div class="stack">Siemens NX · MCD · Tecnomatix · Node-RED · KUKA</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/nx-digital-twin-simulation">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <img src="assets/proj_iot.jpg" alt="Node-RED dashboard on laptop next to capstone rig" loading="lazy" />
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">IoT</span></div>
+          <h3>Industrial IoT — Node-RED, MQTT, Modbus</h3>
+          <p>Nine labs of industrial-IoT bridging — Node-RED dashboards, MQTT topic taxonomy, Modbus RTU/TCP integration, edge deployment on Raspberry Pi. Same pattern that drove the capstone dashboard.</p>
+          <div class="stack">Node-RED · MQTT · Modbus RTU/TCP · Raspberry Pi · SQLite</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/industrial-iot-node-red">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <div class="thumb-fallback">// PADS&nbsp;Logic + Layout · LM317 · in-house etch · ECP455</div>
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">PCB</span></div>
+          <h3>Variable-Voltage Power Supply</h3>
+          <p>Built from scratch — schematic in PADS Logic, board in PADS Layout, etched in-house, populated, tested. LM317-based 0–24 V supply, code-compliant per ECP455 deliverable.</p>
+          <div class="stack">PADS Logic · PADS Layout · LM317 · CSA / CEC · in-house etch</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/variable-voltage-power-supply">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <div class="thumb-fallback"># RTD Pt100 → PID → heater + fan<br>FOPDT · Cohen-Coon · MATLAB</div>
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">Process</span></div>
+          <h3>Process Control — Pressure / Flow / Level / Temperature</h3>
+          <p>Nine labs across the four core process variables. Closed-loop temperature control with Pt100 RTD, MATLAB FOPDT fit on step-response data, and PID tuned from Cohen-Coon.</p>
+          <div class="stack">RTD Pt100 · PID · MATLAB · FOPDT · Cohen-Coon</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/process-control-temperature">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <div class="thumb-fallback">// Mastercam → HAAS Mill<br>Lathe · GD&amp;T · AL 6061-T6</div>
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">Manufacturing</span></div>
+          <h3>CNC Manufacturing — Mastercam &amp; HAAS</h3>
+          <p>CAM design from scratch in Mastercam, executed on HAAS mills. Plus manual lathe and milling — speeds, feeds, tolerances, materials. HAAS hands-on certified.</p>
+          <div class="stack">Mastercam · HAAS Mill · Manual lathe · AL 6061-T6 · GD&amp;T</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/cnc-manufacturing">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <img src="assets/proj_pneumatics.jpeg" alt="Festo pneumatic kit" loading="lazy" />
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge live">Done</span><span class="badge">Pneumatics</span></div>
+          <h3>Pneumatics &amp; MPS Troubleshooting</h3>
+          <p>Festo pneumatic and electro-pneumatic circuits — timed press, sensor-gated cylinders, sequencing — plus disciplined live troubleshooting on MPS stations under exam conditions.</p>
+          <div class="stack">Festo · Cylinders / valves · Limit switches · MPS · FluidSim</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004/pneumatics-mps-troubleshooting">GitHub →</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="thumb">
+          <div class="thumb-fallback">github.com/harpreetsingh52004</div>
+        </div>
+        <div class="body">
+          <div class="badges"><span class="badge">More</span></div>
+          <h3>More on GitHub</h3>
+          <p>Smaller projects, lab work, and experiments live on my GitHub. Worth a scroll if you want to see how I think through smaller problems.</p>
+          <div class="stack">Git · GitHub · Notes &amp; experiments</div>
+          <div class="links"><a href="https://github.com/harpreetsingh52004">All repos →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="label">Credentials</div>
+    <h2>Certifications &amp; Education.</h2>
+    <p class="sub">Formal training in automation, controls, mechatronics, and manufacturing.</p>
+    <div class="cert-list">
+      <div class="cert">
+        <div class="issuer">Seneca Polytechnic</div>
+        <h4>Electromechanical Engineering Technology — Automation</h4>
+        <div class="date">Advanced Diploma · 2025</div>
+      </div>
+      <div class="cert">
+        <div class="issuer">Siemens</div>
+        <h4>TIA Portal · Control Systems Fundamentals · Mechatronics L1</h4>
+        <div class="date">Industry-recognized training</div>
+      </div>
+      <div class="cert">
+        <div class="issuer">KUKA</div>
+        <h4>Robot Programming I · Robot Applications</h4>
+        <div class="date">KRL + WorkVisual coursework</div>
+      </div>
+      <div class="cert">
+        <div class="issuer">EPLAN</div>
+        <h4>Certified Student</h4>
+        <div class="date">Electrical schematics</div>
+      </div>
+      <div class="cert">
+        <div class="issuer">HAAS</div>
+        <h4>Mill Operator — Hands-on test</h4>
+        <div class="date">CNC machining</div>
+      </div>
+      <div class="cert">
+        <div class="issuer">BACnet</div>
+        <h4>Basics + Device Profiles</h4>
+        <div class="date">Building automation</div>
+      </div>
+      <div class="cert">
+        <div class="issuer">WHMIS</div>
+        <h4>Workplace Hazardous Materials</h4>
+        <div class="date">Required workplace cert</div>
+      </div>
+      <div class="cert">
+        <div class="issuer">OACETT</div>
+        <h4>C.E.T. designation</h4>
+        <div class="date">In progress</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="label">Get in touch</div>
+    <h2>Let's talk automation.</h2>
+    <p class="sub">Best way to reach me is email — happy to chat about roles, projects, or controls engineering in general.</p>
+    <div class="contact-grid">
+      <div class="contact-row">
+        <span class="label-inline">email</span>
+        <a href="mailto:harpreet@harpreetsingh.cloud">harpreet@harpreetsingh.cloud</a>
+      </div>
+      <div class="contact-row">
+        <span class="label-inline">phone</span>
+        <a href="tel:+12896235733">289-623-5733</a>
+      </div>
+      <div class="contact-row">
+        <span class="label-inline">github</span>
+        <a href="https://github.com/harpreetsingh52004">github.com/harpreetsingh52004</a>
+      </div>
+      <div class="contact-row">
+        <span class="label-inline">linkedin</span>
+        <a href="https://www.linkedin.com/in/harpreetsingh52004">linkedin.com/in/harpreetsingh52004</a>
+      </div>
+      <div class="contact-row">
+        <span class="label-inline">résumé</span>
+        <a href="resume.pdf" download>Download PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>© <span id="year"></span> Harpreet Singh · Toronto, ON</div>
+      <div>Built with HTML + CSS · Hosted on GitHub Pages</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
